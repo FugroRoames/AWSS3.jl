@@ -497,17 +497,17 @@ function s3_list_objects(aws::AWSConfig, bucket, path_prefix=""; delimiter="/", 
         while more
             q = Dict{String, String}()
             if path_prefix != ""
-                q["prefix"] = path_prefix
+                q["Prefix"] = path_prefix
             end
             if delimiter != ""
-                q["delimiter"] = delimiter
+                q["Delimiter"] = delimiter
             end
             if marker != ""
-                q["marker"] = marker
+                q["Marker"] = marker
             end
             if max_items !== nothing
                 # Note: AWS seems to only return up to 1000 items
-                q["max-keys"] = string(max_items - num_objects)
+                q["MaxKeys"] = string(max_items - num_objects)
             end
 
             @repeat 4 try
